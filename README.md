@@ -1,15 +1,33 @@
 ```text
-        generar_terreno()
-               |
-               ▼
-             mapa
-            /    \
-          /        \
-        ▼            ▼
-simular_iluminacion()  simular_fluidos()
-        |                    |
-        ▼                    ▼
-    mapa_luz             mapa_fluidos
-                             |
-                             ▼
-                      contar_bloques()
+
+                    ┌──────────────────────┐
+                    │ Generación terreno   │
+                    │ generar_terreno()    │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                         ┌───────────┐
+                         │   mapa    │
+                         └─────┬─────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    ▼                     ▼
+          ┌─────────────────┐   ┌─────────────────┐
+          │   Iluminación   │   │     Fluidos     │
+          │                 │   │                 │
+          │ mapa → mapa_luz │   │ mapa → fluidos  │
+          └────────┬────────┘   └────────┬────────┘
+                   │                     │
+                   │                     ▼
+                   │             ┌───────────────┐
+                   │             │   Censo       │
+                   │             │ contar_bloques│
+                   │             └───────┬───────┘
+                   │                     │
+                   └──────────┬──────────┘
+                              ▼
+                     ┌──────────────────┐
+                     │ Validación       │
+                     │ invariantes      │
+                     └──────────────────┘
